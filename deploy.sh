@@ -8,6 +8,7 @@ kubectl apply -f postgres-secrets.yaml
 kubectl apply -f postgres-storage.yaml
 kubectl apply -f postgres-deployment.yaml
 kubectl apply -f postgres-service.yaml
+kubectl delete configmap hostname-config
 kubectl create configmap hostname-config --from-literal=postgres_host=$(kubectl get svc postgres -o jsonpath="{.spec.clusterIP}")
 kubectl apply -f springboot-deployment.yaml
 kubectl apply -f springboot-service.yaml
