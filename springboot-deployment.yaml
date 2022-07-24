@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pulumi-gke-demo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: pulumi-gke-demo
+  replicas: 1
+  template:
+    metadata:
+      name: pulumi-gke-demo
+      labels:
+        app: pulumi-gke-demo
+    spec:
+      containers:
+      - name: pulumi-gke-demo
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                 name: postgres-secrets
+                 key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                 name: postgres-secrets
+                 key: password
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: hostname-config
+                key: postgres_host
+        image: appurajacool2015/gkepulumispringbootpostgresrestapidemo:latest
