@@ -1,9 +1,9 @@
 #!bash
 mvn clean install -DskipTests=true
-docker build -t appurajacool2015/springbootpostgresrestapidemo .
+docker build -t appurajacool2015/gkepulumispringbootpostgresrestapidemo .
 # we can docker login as a initial step
 #docker login
-docker push appurajacool2015/springbootpostgresrestapidemo
+docker push appurajacool2015/gkepulumispringbootpostgresrestapidemo
 kubectl apply -f postgres-secrets.yaml
 kubectl apply -f postgres-storage.yaml
 kubectl apply -f postgres-deployment.yaml
